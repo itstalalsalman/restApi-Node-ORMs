@@ -20,6 +20,11 @@ const signup = async (req,res, next) => {
         confirmPassword: body.confirmPassword,
     });
 
+    const result = newUser.toJSON();
+
+    delete result.password;
+    delete result.deletedAt;
+
     if(!newUser){
         return res.status(400).json({
             status: 'fail',
